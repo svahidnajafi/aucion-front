@@ -8,7 +8,7 @@
                     <form #participationForm="ngForm">
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>قیمت پیشنهادی (تومان)</mat-label>
-                            <input type="text" matInput name="suggestedPrice"
+                            <input type="number" matInput name="suggestedPrice"
                                    [(ngModel)]="request.suggestedPrice" required>
                             <mat-error>وارد نمودن قیمت پیشنهادی الزامی می باشد.</mat-error>
                         </mat-form-field>
