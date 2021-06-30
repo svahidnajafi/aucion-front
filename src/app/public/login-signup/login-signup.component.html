@@ -1,0 +1,47 @@
+<div class="login-container">
+    <div class="login-card">
+        <div class="t-center mb-25">
+            <h2 class="f-24">خوش آمدید</h2>
+            <span *ngIf="isLogin">برای ورود لطفا اطلاعات کاربری خود را وارد نمائید.</span>
+            <span *ngIf="!isLogin">برای ثبت نام لطفا مشخصات خود را وارد نمائید.</span>
+        </div>
+        <form #loginForm="ngForm">
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>نام</mat-label>
+                <input [(ngModel)]="model.name" matInput name="firstName" required type="text">
+                <mat-error>وارد نمودن نام الزامی است</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>نام خانوادگی</mat-label>
+                <input [(ngModel)]="model.lastName" matInput name="lastName" required type="text">
+                <mat-error>وارد نمودن نام خانوادگی الزامی است</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>کد ملی</mat-label>
+                <input [(ngModel)]="model.nationalCode" matInput name="nationalCode" required type="text">
+                <mat-error>وارد نمودن کد ملی الزامی است</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>گذرواژه</mat-label>
+                <input [(ngModel)]="model.password" matInput name="password" required type="password">
+                <mat-error>وارد نمودن گذرواژه الزامی است</mat-error>
+            </mat-form-field>
+
+            <div class="mb-15">
+                <button class="button-link" (click)="toggleForm()">
+                    <span *ngIf="isLogin">حساب کاربری ندارید ؟   ثبت نام کنید.</span>
+                    <span *ngIf="!isLogin">بازگشت به فرم ورود</span>
+                </button>
+            </div>
+
+            <button *ngIf="isLogin" (click)="login()" class="button-primary block green"
+                    [disabled]="loginForm.invalid" [ngClass]="loginForm.invalid && 'disabled'" mat-ripple>
+                ورود
+            </button>
+            <button *ngIf="!isLogin" (click)="signup()" class="button-primary block blue"
+                    [disabled]="loginForm.invalid" [ngClass]="loginForm.invalid && 'disabled'" mat-ripple>
+                ثبت نام
+            </button>
+        </form>
+    </div>
+</div>

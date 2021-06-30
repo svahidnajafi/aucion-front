@@ -1,0 +1,55 @@
+@import '../../../../../styles/colors';
+
+.nav-bar {
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  box-shadow: 0 3px 5px rgba(#000, .2);
+  width: 100%;
+  z-index: 100;
+  background-color: #fff;
+
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: $color-blue-tint;
+    margin: 0;
+  }
+
+  &__name {
+    font-size: 18px;
+    color: #333;
+  }
+
+  &__icon {
+    color: #9f9f9f;
+  }
+}
+
+.button-logout {
+  padding: 5px 10px;
+  font-family: IRANSans !important;
+  font-size: 16px;
+  background-color: transparent;
+  transition: all .2s ease-out;
+  color: #333;
+  box-shadow: none;
+  border: none;
+  outline: none;
+
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+
+  &__icon {
+    font-size: 22px;
+    margin-left: 3px;
+    &::before {
+      transform: translateY(4px);
+    }
+  }
+}

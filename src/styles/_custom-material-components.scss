@@ -1,0 +1,234 @@
+@import 'mixins';
+
+// **************** Side Navigation Menu ********************
+.menu-expansion-panel {
+      background-color: rgba(255, 255, 255, 0) !important;
+      padding-right: 0 !important;
+      color: white !important;
+      border-radius: 0 !important;
+
+      .mat-expansion-indicator, .mat-expansion-indicator:after {
+            color: white !important;
+      }
+
+      .mat-expansion-panel-header {
+            padding-right: 0 !important;
+      }
+
+      .mat-list-base {
+            padding-top: 0 !important;
+      }
+
+      .mat-expansion-panel-content {
+            background-color: #14202b !important;
+
+            .mat-expansion-panel-body {
+                  padding: 0 !important;
+            }
+      }
+}
+
+.menu-list-item {
+      .mat-list-item-content {
+            padding: 0 !important;
+      }
+}
+
+.side-nav {
+      .mat-drawer-inner-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+      }
+
+      .mat-drawer-inner-container::-webkit-scrollbar {
+            display: none !important;
+      }
+}
+
+.main-menus {
+      .mat-divider {
+            margin: 0 0 20px 0;
+            border-top-color: rgba(255, 255, 255, 0.25) !important;
+      }
+}
+
+.list-expansion-panel {
+      .title-bar .mat-expansion-indicator, .mat-expansion-indicator:after {
+            visibility: hidden;
+      }
+}
+
+.form-field {
+      width: 100%;
+}
+
+.expansion-list {
+      .menu-expansion-panel {
+            background-color: rgba(255, 255, 255, 0) !important;
+            padding-right: 0 !important;
+            color: white !important;
+            border-radius: 0 !important;
+
+            .mat-expansion-indicator, .mat-expansion-indicator:after {
+                  color: white !important;
+            }
+
+            .mat-expansion-panel-header[aria-disabled=true] {
+                  padding-right: 0 !important;
+                  color: #2b2b2b !important;
+            }
+
+            .mat-expansion-panel-header {
+                  padding-right: 0 !important;
+                  color: #2b2b2b !important;
+            }
+
+            .mat-list-base {
+                  padding-top: 0 !important;
+            }
+
+            .mat-expansion-panel-content {
+                  //background-color: #14202b !important;
+
+                  .mat-expansion-panel-body {
+                        padding: 0 !important;
+                  }
+            }
+      }
+
+      .menu-list-item {
+            .mat-list-item-content {
+                  padding: 0 !important;
+            }
+      }
+
+      .mat-expansion-panel-spacing {
+            margin: 0 !important;
+      }
+}
+
+.mat-form-field label {
+      font-size: 15px;
+}
+
+.mat-form-field.mat-form-field-should-float label {
+      font-size: 17px;
+}
+
+.light-theme .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: #999;
+}
+
+.mat-tooltip {
+      font-size: 16px !important;
+      background-color: #333;
+}
+.mat-dialog-container {
+      //background-color: var(--dialog-backColor);
+      background-color: var(--input-bg-color);
+      color: var(--dialog-textColor);
+}
+
+.mat-menu-content, .mat-menu-item {
+      background-color: var(--dialog-backColor);
+      color: var(--dialog-textColor);
+}
+
+.mat-menu-panel {
+  box-shadow: 0 3px 8px rgba(#000, .2);
+}
+
+.mat-form-field-label {
+      background-color: var(--input-bg-color);
+      color: var(--dialog-textColor);
+}
+
+.mat-autocomplete-panel {
+      box-shadow: 0 5px 8px rgba(#000, .2);
+}
+
+.mat-option {
+      background-color: var(--dialog-backColor);
+      color: var(--dialog-textColor);
+      &:hover {
+            background-color: var(--hover-backColor);
+            color: var(--accent-textColor);
+      }
+}
+
+.mat-snack-bar-container {
+      background-color: #333;
+      color: var(--accent-textColor);
+}
+
+.mat-simple-snackbar-action button {
+      background-color: #444;
+      color: var(--color-green);
+}
+
+.mat-datepicker-content {
+      background-color: var(--dialog-backColor);
+      padding: 10px;
+      box-shadow: 0 3px 8px rgba(#000, .2);
+}
+
+/*.mat-calendar-table-header th {
+      color: var(--dialog-textColor);
+      font-size: 16px;
+}
+
+.mat-calendar-body-label {
+      color: var(--dialog-textColor);
+      font-size: 16px;
+}
+
+.mat-calendar-body-cell-content {
+      color: var(--dialog-textColor);
+      font-size: 16px;
+      border-width: 0 !important;
+      transition: all .2s ease;
+
+      &:hover {
+            color: var(--accent-textColor);
+            background-color: var(--hover-backColor);
+      }
+      &.mat-calendar-body-selected {
+            color: var(--color-purple);
+            font-weight: bold;
+            font-size: 18px;
+      }
+}
+
+.mat-calendar-previous-button, .mat-calendar-next-button {
+}*/
+
+.mat-tab-label {
+      font-size: 16px;
+}
+
+.mat-button-toggle-group {
+      background-color: var(--dialog-backColor);
+      & > .mat-button-toggle-checked {
+            color: var(--accent-textColor) !important;
+            background-color: var(--hover-backColor) !important;
+      }
+}
+
+.mat-dialog-container .mat-checkbox-inner-container .mat-checkbox-input:checked  ~ .mat-checkbox-background {
+      background-color: var(--accent-textColor);
+
+      & .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
+            stroke: var(--dialog-backColor);
+      }
+}
+
+.cdk-overlay-dark-backdrop {
+      background-color: rgba(#000, .8);
+}
+
+.mat-form-field-invalid {
+      color: var(--color-error);
+      & .mat-error, & .mat-form-field-label {
+            color: var(--color-error);
+      }
+}

@@ -1,0 +1,14 @@
+<div class="container">
+    <app-nav-bar></app-nav-bar>
+    <div class="content">
+        <div class="content-container">
+            <app-auctions-list (createAuctionEvent)="createAuction()"
+                               (deleteAuctionEvent)="deleteAuction($event)"
+                               (editAuctionEvent)="editAuction($event)"
+                               (participationEvent)="participateInAuction($event)"
+                               (reloadEvent)="reload()"
+                               [model]="data"
+            ></app-auctions-list>
+        </div>
+    </div>
+</div>

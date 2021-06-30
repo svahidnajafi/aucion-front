@@ -1,0 +1,118 @@
+@import './colors';
+
+.button-primary {
+  padding: 10px 30px;
+  font-family: IRANSans !important;
+  font-size: 22px;
+  font-weight: bold;
+  transition: all .2s ease-out;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: none;
+  border: none;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+  &.green {
+    background-color: $color-green-tint;
+
+    &:hover {
+      background-color: lighten($color-green-tint, 10%);
+    }
+  }
+
+  &.blue {
+    background-color: $color-blue-tint;
+
+    &:hover {
+      background-color: lighten($color-blue-tint, 10%);
+    }
+  }
+
+  &.disabled {
+    background-color: #979797 !important;
+  }
+}
+
+.button-link {
+  font-family: IRANSans !important;
+  font-size: 16px;
+  color: $color-blue-lighten;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  transition: all .1s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    color: lighten($color-blue-lighten, 10%);
+  }
+
+  &.small {
+    font-size: 14px;
+  }
+}
+
+.button-secondary {
+  padding: 5px 10px;
+  font-family: IRANSans !important;
+  font-size: 16px;
+  transition: all .2s ease-out;
+  color: #fff;
+  border-radius: 7px;
+  box-shadow: none;
+  border: none;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+  &.green {
+    background-color: $color-green-tint;
+
+    &:hover {
+      background-color: lighten($color-green-tint, 10%);
+    }
+  }
+
+  &.red {
+    background-color: $color-red-tint;
+
+    &:hover {
+      background-color: lighten($color-red-tint, 10%);
+    }
+  }
+
+  &.blue {
+    background-color: $color-blue-tint;
+
+    &:hover {
+      background-color: lighten($color-blue-tint, 10%);
+    }
+  }
+
+  & > .icon {
+    margin-left: 3px;
+  }
+  & > .icon::before {
+    transform: translateY(4px);
+    font-size: 22px !important;
+  }
+
+  &.disabled {
+    background-color: #979797 !important;
+  }
+}

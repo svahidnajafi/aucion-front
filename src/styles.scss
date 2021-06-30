@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@import 'styles/variables';
+@import 'styles/theme';
+@import 'styles/colors';
+@import 'assets/css/mat-icons.css';
+@import 'assets/css/fontiran.css';
+@import 'styles/custom-material-components';
+@import 'styles/shared';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.font-titr {
+  font-family: BTitr !important;
+}
+
+html, body {
+  height: 100%;
+  //background: #ecf0f3;
+  font-family: IRANSans;
+
+  h1, h2, h3, h4, h5 {
+    @include fix-font-shared();
+  }
+}
+
+.input-field {
+  width: 100%;
+}
+
+.input-rtl {
+  direction: rtl !important;
+  text-align: right;
+}
+
+.input-ltr {
+  direction: ltr !important;
+  text-align: right;
+
+}
+
+#progressBar {
+  direction: ltr !important;
+}

@@ -1,0 +1,83 @@
+<mat-card>
+    <div class="card-header">لیست مزایده ها</div>
+    <div class="card-actions">
+        <button class="button-secondary green" (click)="createAuction()" mat-ripple>
+            <span class="mdi mdi-plus-thick icon"></span>
+            <span>ایجاد مزایده جدید</span>
+        </button>
+        <button class="button-secondary blue" (click)="reload()" mat-ripple>
+            <span class="mdi mdi-refresh icon"></span>
+            <span>بازنشانی لیست مزایده ها</span>
+        </button>
+    </div>
+</mat-card>
+<div>
+    <div *ngIf="model.length !== 0">
+        <!-- list show -->
+        <mat-card style="margin-top: 36px">
+            <div>
+                <div class="list-header-small" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxFlex="6%">ردیف</div>
+                    <div fxFlex="20%" fxLayoutAlign="center center">مبلغ پایه</div>
+                    <div fxFlex="15%" fxLayoutAlign="center center">تاریخ انقضاء</div>
+                    <div fxFlex="15%" fxLayoutAlign="center center">واحد افزایش</div>
+                    <div fxFlex="15%" fxLayoutAlign="center center">مبلغ نهایی</div>
+                    <div fxFlex="15%" fxLayoutAlign="center center">وضعیت</div>
+                    <div fxFlex="14%">عملیات</div>
+                </div>
+                <mat-divider></mat-divider>
+                <div *ngFor="let row of model; index as i"
+                     [ngClass]="( i%2 !== 0 ) ? 'list-small odd': 'list-small'">
+                    <div fxFlex="6%">{{i + 1}}</div>
+                    <div fxFlex="20%" fxLayoutAlign="center center">
+                        <span>{{row.basePrice | number}}</span>
+                        <span class="f-14"> تومان</span>
+                    </div>
+
+                    <div fxFlex="15%" fxLayoutAlign="center center">{{row.expireDate | unixJalali}}</div>
+
+                    <div fxFlex="15%">{{row.increaseUnit | number}}</div>
+
+                    <div fxFlex="15%">
+                        <span>{{row.finalPrice | number}}</span>
+                        <span class="f-14"> تومان</span>
+                    </div>
+
+                    <div fxFlex="15%">
+                        <span *ngIf="!row.expired && !row.soldOut" class="app-badge-circle blue"><span
+                                [matTooltip]="'در حال انجام'" class="mdi mdi-timer-sand"
+                                style="font-size: 18px;"></span></span>
+                        <span *ngIf="row.soldOut" class="app-badge-circle green"><span
+                                [matTooltip]="'انجام شده'" class="mdi mdi-check-bold"
+                                style="font-size: 18px;"></span></span>
+                        <span *ngIf="row.expired && !row.soldOut" class="app-badge-circle red"><span
+                                [matTooltip]="'منقضی شده'" class="mdi mdi-close-thick"
+                                style="font-size: 18px;"></span></span>
+                    </div>
+
+                    <div fxFlex="14%">
+                        <div>
+                            <button *ngIf="!row.expired" (click)="participate(row.id)" [matTooltip]="'شرکت در مزایده'" mat-icon-button>
+                                        <span class="mdi mdi-location-enter text-success f-22"></span>
+                            </button>
+                            <button (click)="edit(row)" [matTooltip]="'ویرایش مزایده'" mat-icon-button>
+                                        <span class="mdi mdi-circle-edit-outline text-orange f-22"></span>
+                            </button>
+                            <!--<button (click)="delete(row.id)" [matTooltip]="'حذف مزایده'" mat-icon-button>
+                                        <span class="mdi mdi-close-circle-outline text-danger f-22"></span>
+                            </button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+        <!-- /list show -->
+    </div>
+
+    <div *ngIf="model.length === 0">
+        <div fxLayout="row" fxLayoutAlign="center center" style="height: 250px">
+            <div style="font-size: 22px; font-weight: 400; font-style: italic">اطلاعاتی برای نمایش وجود ندارد</div>
+        </div>
+    </div>
+
+</div>
