@@ -1,17 +1,36 @@
-<div class="container">
-    <app-nav-bar></app-nav-bar>
-    <div class="content">
-        <div class="content-container">
-            <mat-card>
+<mat-card>
                 <div class="card-header">فرم شرکت در مزایده</div>
+                <div class="fx-row fxA-space-around-center w-100 f-16 text-bold mb-3">
+                    <div class="fx-row fxA-start-center gap-05">
+                        <span>مبلغ پایه:</span>
+                        <span>{{auction.basePrice | pricePipe}}</span>
+                        <span>تومان</span>
+                    </div>
+                    <div class="fx-row fxA-start-center gap-05">
+                        <span>واحد افزایش:</span>
+                        <span>{{auction.increaseUnit | pricePipe}}</span>
+                        <span>تومان</span>
+                    </div>
+                </div>
                 <div>
                     <form #participationForm="ngForm">
-                        <mat-form-field class="form-field" appearance="outline">
-                            <mat-label>قیمت پیشنهادی (تومان)</mat-label>
-                            <input type="number" matInput name="suggestedPrice"
-                                   [(ngModel)]="request.suggestedPrice" required>
-                            <mat-error>وارد نمودن قیمت پیشنهادی الزامی می باشد.</mat-error>
-                        </mat-form-field>
+                        <div class="fx-row fxA-start-center gap-20">
+                            <mat-form-field fxFlex="80%" class="form-field" appearance="outline">
+                                <mat-label>قیمت پیشنهادی (تومان)</mat-label>
+                                <input type="number" matInput name="suggestedPrice"
+                                       [(ngModel)]="request.suggestedPrice" 
+                                       (ngModelChange)="validateSuggestedPrice($event)"
+                                       #suggestedPriceInput="ngModel"
+                                       required>
+                                <mat-error *ngIf="suggestedPriceInput.control.errors && suggestedPriceInput.control.errors.required">وارد نمودن قیمت پیشنهادی الزامی می باشد.</mat-error>
+                                <mat-error *ngIf="suggestedPriceInput.control.errors && suggestedPriceInput.control.errors.incorrect">مبلغ وارد شده نا معتبر می باشد.</mat-error>
+                            </mat-form-field>
+                            <div fxFlex="20%" style="padding-bottom: 1.34375em;" class="f-16">
+                                <span *ngIf="!request.suggestedPrice" class="ml-05">0</span>
+                                <span *ngIf="request.suggestedPrice">{{request.suggestedPrice | pricePipe}}</span>
+                                <span>تومان</span>
+                            </div>
+                        </div>
                         <mat-form-field appearance="outline" class="form-field">
                             <mat-label>{{'تاریخ'}}</mat-label>
                             <input matInput [matDatepicker]="suggestedDate" name="suggestedDate"
@@ -37,6 +56,3 @@
                     </form>
                 </div>
             </mat-card>
-        </div>
-    </div>
-</div>

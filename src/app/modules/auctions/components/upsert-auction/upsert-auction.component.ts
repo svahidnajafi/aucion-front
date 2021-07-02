@@ -19,7 +19,6 @@ export class UpsertAuctionComponent implements OnInit {
     description: string;
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private store: StoreService,
                 private auctionService: AuctionService,
                 private itemService: ItemService) {
     }
@@ -29,12 +28,11 @@ export class UpsertAuctionComponent implements OnInit {
         if (typeof resolvedData === 'object') {
             this.isEdit = true;
             this.description = resolvedData.description;
-            this.selectedDate = convertUnixToJalaliDate(this.store.auction.expireDate);
-            this.model = this.store.auction;
+            this.model = JSON.parse(this.route.snapshot.queryParamMap.get('auction'));
             console.log(this.model);
+            this.selectedDate = convertUnixToJalaliDate(this.model.expireDate);
         } else {
             this.model = new AuctionModel();
-            this.model.increaseUnit = 0;
         }
     }
     

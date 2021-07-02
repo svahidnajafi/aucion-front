@@ -6,12 +6,12 @@
             <span *ngIf="!isLogin">برای ثبت نام لطفا مشخصات خود را وارد نمائید.</span>
         </div>
         <form #loginForm="ngForm">
-            <mat-form-field appearance="outline" class="form-field">
+            <mat-form-field *ngIf="!isLogin" appearance="outline" class="form-field">
                 <mat-label>نام</mat-label>
                 <input [(ngModel)]="model.name" matInput name="firstName" required type="text">
                 <mat-error>وارد نمودن نام الزامی است</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline" class="form-field">
+            <mat-form-field *ngIf="!isLogin" appearance="outline" class="form-field">
                 <mat-label>نام خانوادگی</mat-label>
                 <input [(ngModel)]="model.lastName" matInput name="lastName" required type="text">
                 <mat-error>وارد نمودن نام خانوادگی الزامی است</mat-error>

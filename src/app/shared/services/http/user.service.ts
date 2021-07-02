@@ -14,11 +14,11 @@ export class UserService extends HttpService{
         super(store);
     }
     
-    login(model: UserModel): Observable<LoginAndSignupResponse> {
-        return this.http.post<LoginAndSignupResponse>(this.getRoute('/user/login'), model);
+    login(model: UserModel): Observable<UserModel> {
+        return this.http.post<UserModel>(this.getRoute('/user/login'), model);
     }
     
-    signup(model: UserModel): Observable<LoginAndSignupResponse> {
-        return this.http.post<LoginAndSignupResponse>(this.getRoute('/user/signUp'), model);
+    signup(model: UserModel): Observable<UserModel> {
+        return this.http.post<UserModel>(this.getRoute('/user/signUp'), model);
     }
 }

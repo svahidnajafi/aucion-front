@@ -42,16 +42,4 @@ export class StoreService {
     public async removeUser(): Promise<void> {
         await sessionStorage.removeItem(this.storageKey);
     }
-    
-    // tslint:disable-next-line:variable-name
-    private _auction: AuctionModel;
-    
-    get auction(): AuctionModel {
-        return this._auction;
-    }
-    
-    set  auction(model: AuctionModel) {
-        this._auction = model;
-    }
-    
 }

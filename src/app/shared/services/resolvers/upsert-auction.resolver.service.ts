@@ -10,14 +10,14 @@ import {StoreService} from '../store.service';
     providedIn: 'root'
 })
 export class UpsertAuctionsResolverService implements Resolve<any> {
-    constructor(private service: ItemService, private store: StoreService) {
+    constructor(private service: ItemService) {
     }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        console.log(route);
+        console.log(route.paramMap.get('id'));
         if (route.routeConfig.path.includes('create')) {
             return of(true);
         } else {
-            return this.service.getSingle(this.store.auction.id);
+            return this.service.getSingle(+route.paramMap.get('id'));
         }
     }
     

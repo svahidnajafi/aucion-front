@@ -1,7 +1,8 @@
 import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
 import {AuctionModel} from '../../../../shared/models/auction-models';
-import {MatDialog} from '@angular/material/dialog';
-import {Observable} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuctionService} from '../../../../shared/services/http/auction.service';
+import {StoreService} from '../../../../shared/services/store.service';
 
 @Component({
     selector: 'app-auctions-list',
@@ -9,36 +10,54 @@ import {Observable} from 'rxjs';
     styleUrls: ['./auctions-list.component.scss']
 })
 export class AuctionsListComponent implements OnInit {
-    @Input() model: AuctionModel[];
-    @Output() createAuctionEvent = new EventEmitter<void>();
-    @Output() reloadEvent = new EventEmitter<void>();
-    @Output() editAuctionEvent = new EventEmitter<AuctionModel>();
-    @Output() deleteAuctionEvent = new EventEmitter<number>();
-    @Output() participationEvent = new EventEmitter<number>();
-    constructor(private dialog: MatDialog) {
+    
+    data: AuctionModel[];
+    
+    constructor(private route: ActivatedRoute,
+                private service: AuctionService,
+                private router: Router) {
     }
     
     ngOnInit(): void {
+        const resolvedData = this.route.snapshot.data.resolvedData;
+        if (resolvedData) {
+            this.data = resolvedData;
+            console.log(this.data);
+        } else {
+            this.data = [];
+        }
     }
     
     logIt(id: number): void {
         console.log(id);
     }
     
-    participate(id: number): void {
-        this.participationEvent.emit(id);
+    participate(model: AuctionModel): void {
+        this.router.navigate([`participate/${model.id}`], {
+            relativeTo: this.route,
+            queryParams: {auction: JSON.stringify(model)}
+        });
     }
     
     reload(): void {
-        this.reloadEvent.emit();
+        this.service.getAll().subscribe(res => {
+            this.data = res;
+        }, err => {
+            console.log(err);
+            this.data = [];
+        });
     }
     
     createAuction(): void {
-        this.createAuctionEvent.emit();
+        this.router.navigate(['create'], {relativeTo: this.route});
     }
     
     edit(model: AuctionModel): void {
-        this.editAuctionEvent.emit(model);
+        console.log(model);
+        this.router.navigate([`edit/${model.id}`], {
+            relativeTo: this.route,
+            queryParams: {auction: JSON.stringify(model)}
+        });
     }
     
     delete(id: number): void {

@@ -11,47 +11,8 @@ import {StoreService} from '../../shared/services/store.service';
 })
 export class AuctionsComponent implements OnInit {
     
-    data: AuctionModel[];
-    
-    constructor(private route: ActivatedRoute,
-                private service: AuctionService,
-                private store: StoreService,
-                private router: Router) {
+    constructor() {
     }
     
-    ngOnInit(): void {
-        const resolvedData = this.route.snapshot.data.resolvedData;
-        if (resolvedData) {
-            this.data = resolvedData;
-            console.log(this.data);
-        } else {
-            this.data = [];
-        }
-    }
-    
-    createAuction(): void {
-        this.router.navigate(['create'], {relativeTo: this.route});
-    }
-    
-    deleteAuction(id: number): void {
-    
-    }
-    
-    editAuction(model: AuctionModel): void {
-        this.store.auction = model;
-        this.router.navigate([`edit/${model.id}`], {relativeTo: this.route});
-    }
-    
-    reload(): void {
-        this.service.getAll().subscribe(res => {
-            this.data = res;
-        }, err => {
-            console.log(err);
-            this.data = [];
-        });
-    }
-    
-    participateInAuction(id: number): void {
-        this.router.navigate([`participate/${id}`], {relativeTo: this.route});
-    }
+    ngOnInit(): void {}
 }

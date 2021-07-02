@@ -1,8 +1,4 @@
-<div class="container">
-    <app-nav-bar></app-nav-bar>
-    <div class="content">
-        <div class="content-container">
-            <mat-card>
+<mat-card>
                 <div class="card-header">
                     <span *ngIf="!isEdit">فرم ایجاد مزایده جدید</span>
                     <span *ngIf="isEdit">فرم ویرایش مزایده</span>
@@ -17,18 +13,32 @@
                             </textarea>
                             <mat-error>وارد نمودن توضیحات الزامی می باشد.</mat-error>
                         </mat-form-field>
-                        <mat-form-field class="form-field" appearance="outline">
-                            <mat-label>قیمت پایه (تومان)</mat-label>
-                            <input type="number" matInput name="basePrice"
-                                   [(ngModel)]="model.basePrice" required>
-                            <mat-error>وارد نمودن قیمت پایه الزامی می باشد.</mat-error>
-                        </mat-form-field>
-                        <!--<mat-form-field class="form-field" appearance="outline">
-                            <mat-label>واحد افزایش</mat-label>
-                            <input type="number" matInput name="increaseUnit"
-                                   [ngModel]="model.increaseUnit" required>
-                            <mat-error>وارد نمودن واحد افزایش الزامی می باشد.</mat-error>
-                        </mat-form-field>-->
+                        <div class="fx-row fxA-start-center gap-20">
+                            <mat-form-field class="form-field" appearance="outline">
+                                <mat-label>قیمت پایه (تومان)</mat-label>
+                                <input type="number" matInput name="basePrice"
+                                       [(ngModel)]="model.basePrice" required>
+                                <mat-error>وارد نمودن قیمت پایه الزامی می باشد.</mat-error>
+                            </mat-form-field>
+                            <div fxFlex="20%" style="padding-bottom: 1.34375em;" class="f-16">
+                                <span *ngIf="!model.basePrice" class="ml-05">0</span>
+                                <span *ngIf="model.basePrice">{{model.basePrice | pricePipe}}</span>
+                                <span>تومان</span>
+                            </div>
+                        </div>
+                        <div class="fx-row fxA-start-center gap-20">
+                            <mat-form-field class="form-field" appearance="outline">
+                                <mat-label>واحد افزایش (تومان)</mat-label>
+                                <input type="number" matInput name="increaseUnit"
+                                       [(ngModel)]="model.increaseUnit" required>
+                                <mat-error>وارد نمودن واحد افزایش الزامی می باشد.</mat-error>
+                            </mat-form-field>
+                            <div fxFlex="20%" style="padding-bottom: 1.34375em;" class="f-16">
+                                <span *ngIf="!model.increaseUnit" class="ml-05">0</span>
+                                <span *ngIf="model.increaseUnit">{{model.increaseUnit | pricePipe}}</span>
+                                <span>تومان</span>
+                            </div>
+                        </div>
                         <mat-form-field appearance="outline" class="form-field">
                             <mat-label>{{'تاریخ انقضاء'}}</mat-label>
                             <input matInput [matDatepicker]="expireDate" name="startDate"
@@ -61,6 +71,3 @@
                     </form>
                 </div>
             </mat-card>
-        </div>
-    </div>
-</div>

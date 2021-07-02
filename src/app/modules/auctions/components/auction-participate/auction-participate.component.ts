@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ParticipateInAuctionModel} from '../../../../shared/models/auction-models';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {AuctionModel, ParticipateInAuctionModel} from '../../../../shared/models/auction-models';
 import {AuctionService} from '../../../../shared/services/http/auction.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {convertJalaliToUnix} from '../../../../shared/functions/date-helpers';
 import {StoreService} from '../../../../shared/services/store.service';
+import {NgForm, NgModel} from '@angular/forms';
 
 @Component({
     selector: 'app-auction-participate',
@@ -14,6 +15,8 @@ export class AuctionParticipateComponent implements OnInit {
     
     request = new ParticipateInAuctionModel();
     selectedDate: any;
+    auction: AuctionModel;
+    @ViewChild('suggestedPriceInput') suggestedPriceInput: NgModel;
     
     constructor(private service: AuctionService,
                 private store: StoreService,
@@ -22,11 +25,15 @@ export class AuctionParticipateComponent implements OnInit {
     }
     
     ngOnInit(): void {
+        this.auction = JSON.parse(this.route.snapshot.queryParamMap.get('auction'));
+        console.log(this.auction);
+        console.log(this.store.user);
     }
     
     submit(): void {
         this.request.suggestedDate = convertJalaliToUnix(this.selectedDate);
-        const userId = this.store.user ? this.store.user.id || 2 : 2;
+        console.log(this.store.user);
+        const userId = this.store.user.id;
         const auctionId = +this.route.snapshot.paramMap.get('id');
         this.service.participateInAuction(auctionId, userId, this.request).subscribe(() => {
             this.returnToList();
@@ -35,5 +42,30 @@ export class AuctionParticipateComponent implements OnInit {
     
     returnToList(): void {
         this.router.navigate(['auctions']);
+    }
+
+    validateSuggestedPrice(value: any): void {
+        if (value) {
+            const {basePrice, increaseUnit} = this.auction;
+            if (value < basePrice) {
+                this.suggestedPriceInput.control.setErrors({incorrect: true});
+            } else {
+                const betAmount = value - basePrice;
+                const result = this.countDecimals(betAmount / increaseUnit);
+                console.log(result);
+                if (result !== 0) {
+                    this.suggestedPriceInput.control.setErrors({incorrect: true});
+                } else {
+                    this.suggestedPriceInput.control.setErrors({incorrect: null});
+                    this.suggestedPriceInput.control.updateValueAndValidity();
+                }
+            }
+        }
+        console.log(this.suggestedPriceInput);
+    }
+
+    countDecimals(value: number): number {
+        if (Math.floor(value.valueOf()) === value.valueOf()) return 0;
+            return value.toString().split(".")[1].length || 0; 
     }
 }

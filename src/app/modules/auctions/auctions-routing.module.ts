@@ -5,26 +5,33 @@ import {AuctionsResolverService} from '../../shared/services/resolvers/auctions-
 import {UpsertAuctionComponent} from './components/upsert-auction/upsert-auction.component';
 import {UpsertAuctionsResolverService} from '../../shared/services/resolvers/upsert-auction.resolver.service';
 import {AuctionParticipateComponent} from './components/auction-participate/auction-participate.component';
+import {AuctionsListComponent} from './components/auctions-list/auctions-list.component';
 
 const routes: Routes = [
     {
         path: '',
         component: AuctionsComponent,
-        resolve: {resolvedData: AuctionsResolverService}
-    },
-    {
-        path: 'create',
-        component: UpsertAuctionComponent,
-        resolve: {resolvedData: UpsertAuctionsResolverService}
-    },
-    {
-        path: 'edit/:id',
-        component: UpsertAuctionComponent,
-        resolve: {resolvedData: UpsertAuctionsResolverService}
-    },
-    {
-        path: 'participate/:id',
-        component: AuctionParticipateComponent
+        children: [
+            {
+                path: '',
+                component: AuctionsListComponent,
+                resolve: {resolvedData: AuctionsResolverService}
+            },
+            {
+                path: 'create',
+                component: UpsertAuctionComponent,
+                resolve: {resolvedData: UpsertAuctionsResolverService}
+            },
+            {
+                path: 'edit/:id',
+                component: UpsertAuctionComponent,
+                resolve: {resolvedData: UpsertAuctionsResolverService}
+            },
+            {
+                path: 'participate/:id',
+                component: AuctionParticipateComponent
+            }
+        ]
     }
 ];
 

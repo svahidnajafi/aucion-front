@@ -12,7 +12,7 @@
     </div>
 </mat-card>
 <div>
-    <div *ngIf="model.length !== 0">
+    <div *ngIf="data.length !== 0">
         <!-- list show -->
         <mat-card style="margin-top: 36px">
             <div>
@@ -26,7 +26,7 @@
                     <div fxFlex="14%">عملیات</div>
                 </div>
                 <mat-divider></mat-divider>
-                <div *ngFor="let row of model; index as i"
+                <div *ngFor="let row of data; index as i"
                      [ngClass]="( i%2 !== 0 ) ? 'list-small odd': 'list-small'">
                     <div fxFlex="6%">{{i + 1}}</div>
                     <div fxFlex="20%" fxLayoutAlign="center center">
@@ -57,7 +57,7 @@
 
                     <div fxFlex="14%">
                         <div>
-                            <button *ngIf="!row.expired" (click)="participate(row.id)" [matTooltip]="'شرکت در مزایده'" mat-icon-button>
+                            <button *ngIf="!row.expired" (click)="participate(row)" [matTooltip]="'شرکت در مزایده'" mat-icon-button>
                                         <span class="mdi mdi-location-enter text-success f-22"></span>
                             </button>
                             <button (click)="edit(row)" [matTooltip]="'ویرایش مزایده'" mat-icon-button>
@@ -74,7 +74,7 @@
         <!-- /list show -->
     </div>
 
-    <div *ngIf="model.length === 0">
+    <div *ngIf="data.length === 0">
         <div fxLayout="row" fxLayoutAlign="center center" style="height: 250px">
             <div style="font-size: 22px; font-weight: 400; font-style: italic">اطلاعاتی برای نمایش وجود ندارد</div>
         </div>

@@ -26,8 +26,8 @@ export class LoginSignupComponent implements OnInit {
     
     login(): void {
         this.service.login(this.model).subscribe(res => {
-            if (res.result) {
-                this.store.user = this.model;
+            if (res) {
+                this.store.user = res;
                 this.router.navigate(['auctions']);
             } else {
                 this.message.propagate('ورود با خطا مواجه شد.');
@@ -39,8 +39,8 @@ export class LoginSignupComponent implements OnInit {
     
     signup(): void {
         this.service.signup(this.model).subscribe(res => {
-            if (res.result) {
-                this.store.user = this.model;
+            if (res) {
+                this.store.user = res;
                 this.message.propagate('ثبت نام موفقیت آمیز بود.');
                 this.router.navigate(['auctions']);
             } else {
