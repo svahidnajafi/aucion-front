@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {convertJalaliToUnix} from '../../../../shared/functions/date-helpers';
 import {StoreService} from '../../../../shared/services/store.service';
 import {NgForm, NgModel} from '@angular/forms';
+import { ItemModel } from 'src/app/shared/models/item-mdoels';
 
 @Component({
     selector: 'app-auction-participate',
@@ -12,24 +13,27 @@ import {NgForm, NgModel} from '@angular/forms';
     styleUrls: ['./auction-participate.component.scss']
 })
 export class AuctionParticipateComponent implements OnInit {
-    
+
     request = new ParticipateInAuctionModel();
+    item: ItemModel;
     selectedDate: any;
     auction: AuctionModel;
     @ViewChild('suggestedPriceInput') suggestedPriceInput: NgModel;
-    
+
     constructor(private service: AuctionService,
                 private store: StoreService,
                 private router: Router,
                 private route: ActivatedRoute) {
     }
-    
+
     ngOnInit(): void {
         this.auction = JSON.parse(this.route.snapshot.queryParamMap.get('auction'));
+        this.item = this.route.snapshot.data.resolvedData;
+      console.log(this.item);
         console.log(this.auction);
         console.log(this.store.user);
     }
-    
+
     submit(): void {
         this.request.suggestedDate = convertJalaliToUnix(this.selectedDate);
         console.log(this.store.user);
@@ -39,7 +43,7 @@ export class AuctionParticipateComponent implements OnInit {
             this.returnToList();
         });
     }
-    
+
     returnToList(): void {
         this.router.navigate(['auctions']);
     }
@@ -66,6 +70,6 @@ export class AuctionParticipateComponent implements OnInit {
 
     countDecimals(value: number): number {
         if (Math.floor(value.valueOf()) === value.valueOf()) return 0;
-            return value.toString().split(".")[1].length || 0; 
+            return value.toString().split(".")[1].length || 0;
     }
 }

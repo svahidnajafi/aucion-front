@@ -6,6 +6,7 @@ import {UpsertAuctionComponent} from './components/upsert-auction/upsert-auction
 import {UpsertAuctionsResolverService} from '../../shared/services/resolvers/upsert-auction.resolver.service';
 import {AuctionParticipateComponent} from './components/auction-participate/auction-participate.component';
 import {AuctionsListComponent} from './components/auctions-list/auctions-list.component';
+import { ParticipateAuctionResolverService } from 'src/app/shared/services/resolvers/participate-auction.resolver.service';
 
 const routes: Routes = [
     {
@@ -29,7 +30,8 @@ const routes: Routes = [
             },
             {
                 path: 'participate/:id',
-                component: AuctionParticipateComponent
+                component: AuctionParticipateComponent,
+              resolve: {resolvedData: ParticipateAuctionResolverService}
             }
         ]
     }
