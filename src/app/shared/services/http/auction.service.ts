@@ -25,6 +25,10 @@ export class AuctionService extends HttpService {
     getAll(): Observable<AuctionModel[]> {
         return this.http.get<AuctionModel[]>(this.getRoute('/auction/getAll'));
     }
+
+    getExpired(): Observable<AuctionModel[]> {
+        return this.http.get<AuctionModel[]>(this.getRoute('/auction/getExpiredAuctions'));
+    }
     
     getWinner(auctionId: number): Observable<any> {
         return this.http.get(this.getRoute(`/auction/getExpiredAuctionWinner/${auctionId}`));

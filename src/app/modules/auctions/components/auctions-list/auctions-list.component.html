@@ -1,14 +1,26 @@
 <mat-card>
     <div class="card-header">لیست مزایده ها</div>
-    <div class="card-actions">
-        <button class="button-secondary green" (click)="createAuction()" mat-ripple>
-            <span class="mdi mdi-plus-thick icon"></span>
-            <span>ایجاد مزایده جدید</span>
-        </button>
-        <button class="button-secondary blue" (click)="reload()" mat-ripple>
-            <span class="mdi mdi-refresh icon"></span>
-            <span>بازنشانی لیست مزایده ها</span>
-        </button>
+    <div class="fx-row fxA-space-between-center">
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>جستجو بر اساس وضعیت مزایده:</mat-label>
+                <mat-select name="statusFilter" [(ngModel)]="status"
+                            (ngModelChange)="setStatus($event)">
+                    <mat-option [value]="true">در حال انجام</mat-option>
+                    <mat-option [value]="false">منقضی شده</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="card-actions">
+            <button class="button-secondary green" (click)="createAuction()" mat-ripple>
+                <span class="mdi mdi-plus-thick icon"></span>
+                <span>ایجاد مزایده جدید</span>
+            </button>
+            <button class="button-secondary blue" (click)="reload()" mat-ripple>
+                <span class="mdi mdi-refresh icon"></span>
+                <span>بازنشانی لیست مزایده ها</span>
+            </button>
+        </div>
     </div>
 </mat-card>
 <div>
@@ -59,6 +71,9 @@
                         <div>
                             <button *ngIf="!row.expired" (click)="participate(row)" [matTooltip]="'شرکت در مزایده'" mat-icon-button>
                                         <span class="mdi mdi-location-enter text-success f-22"></span>
+                            </button>
+                            <button *ngIf="row.expired" (click)="getWinner(row.id)" [matTooltip]="'مشاهده برنده مزایده'" mat-icon-button>
+                                        <span class="mdi mdi-party-popper text-purple f-22"></span>
                             </button>
                             <button (click)="edit(row)" [matTooltip]="'ویرایش مزایده'" mat-icon-button>
                                         <span class="mdi mdi-circle-edit-outline text-orange f-22"></span>

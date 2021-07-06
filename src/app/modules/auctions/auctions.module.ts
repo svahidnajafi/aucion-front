@@ -12,14 +12,18 @@ import {UpsertAuctionComponent} from './components/upsert-auction/upsert-auction
 import {PricePipe} from './pipes/price-pipe.pipe';
 import {UnixToJalaliPipe} from './pipes/unix-to-jalali.pipe';
 import { AuctionParticipateComponent } from './components/auction-participate/auction-participate.component';
+import {MatSelectModule} from '@angular/material/select';
+import { AuctionWinnerDialogComponent } from './components/auction-winner-dialog/auction-winner-dialog.component';
 
 @NgModule({
     declarations: [AuctionsComponent, AuctionsListComponent, NavBarComponent,
-        UpsertAuctionComponent, PricePipe, UnixToJalaliPipe, AuctionParticipateComponent],
+        UpsertAuctionComponent, PricePipe, UnixToJalaliPipe, AuctionParticipateComponent,
+        AuctionWinnerDialogComponent],
     exports: [PricePipe, UnixToJalaliPipe],
     imports: [
         CommonModule,
         MaterialModule,
+        MatSelectModule,
         FormsModule,
         FlexModule,
         MatDatepickerModule,

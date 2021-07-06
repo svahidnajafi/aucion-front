@@ -35,6 +35,14 @@
       background-color: lighten($color-blue-tint, 10%);
     }
   }
+  
+  &.purple {
+    background-color: $color-purple-tint;
+
+    &:hover {
+      background-color: lighten($color-purple-tint, 10%);
+    }
+  }
 
   &.disabled {
     background-color: #979797 !important;
@@ -101,6 +109,14 @@
 
     &:hover {
       background-color: lighten($color-blue-tint, 10%);
+    }
+  }
+  
+  &.purple {
+    background-color: $color-purple-tint;
+
+    &:hover {
+      background-color: lighten($color-purple-tint, 10%);
     }
   }
 
